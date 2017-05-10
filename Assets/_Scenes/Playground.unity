@@ -281,5 +281,5 @@ MonoBehaviour:
   lat: 50.93574
   lon: -1.396641
   zoom: 16
-  size: 2048
+  size: 500
   scale: 2

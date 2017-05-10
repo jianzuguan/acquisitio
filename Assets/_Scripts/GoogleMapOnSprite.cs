@@ -9,7 +9,7 @@ public class GoogleMapOnSprite : MonoBehaviour {
     // Building outlines is 17
     public int zoom = 16;
     // Google Map max size for free is 1280x1280 pixels
-    public int size = 1280;
+    //public int size = 1280;
     public int scale = 2;
 
     // Use this for initialization
@@ -17,7 +17,7 @@ public class GoogleMapOnSprite : MonoBehaviour {
         //width = Camera.main.pixelWidth*2;
         //height = Camera.main.pixelHeight*2;
 
-        StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, size, scale));
+        StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, scale));
     }
 
     // Update is called once per frame
@@ -25,11 +25,12 @@ public class GoogleMapOnSprite : MonoBehaviour {
 
     }
 
-    IEnumerator SetGoogleMapSprite(float lat, float lon, int zoom, int size, int scale) {
+    IEnumerator SetGoogleMapSprite(float lat, float lon, int zoom, int scale) {
         string url = "http://maps.googleapis.com/maps/api/staticmap?" +
             "center=" + lat + "," + lon + "&" +
             "zoom=" + zoom + "&" +
-            "size=" + size + "x" + size + "&" +
+            //"size=" + size + "x" + size + "&" +
+            "size=" + Screen.width + "x" + Screen.height + "&" +
             "scale=" + scale;
 
         Debug.Log(url);
@@ -45,5 +46,6 @@ public class GoogleMapOnSprite : MonoBehaviour {
 
         Sprite map = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, width, height), new Vector2(0.5f, 0.5f));
         GetComponent<SpriteRenderer>().sprite = map;
+        //transform.localScale = new Vector3(transform.localScale.x / 2, transform.localScale.y / 2, transform.localScale.z);
     }
 }
