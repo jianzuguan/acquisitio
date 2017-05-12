@@ -19,12 +19,14 @@ public class GoogleMapOnSprite : MonoBehaviour {
         //height = Camera.main.pixelHeight*2;
 
         //StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, scale));
-        UpdateMap(lat, lon, zoom);
+        //UpdateMap(lat, lon, zoom);
     }
 
     // Update is called once per frame
     void Update() {
-        
+        if (Input.GetButtonDown("Submit")) {
+            UpdateMap(lat, lon, zoom);
+        }
     }
 
     IEnumerator SetGoogleMapSprite(float lat, float lon, int zoom, int scale) {
@@ -52,7 +54,20 @@ public class GoogleMapOnSprite : MonoBehaviour {
         //transform.localScale = new Vector3(transform.localScale.x / 2, transform.localScale.y / 2, transform.localScale.z);
     }
 
+    public void UpdateMap() {
+        StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, scale));
+    }
+
     public void UpdateMap(float lat, float lon, int zoom) {
         StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, scale));
     }
+
+    public void UpdateMap(GoogleMapOnSprite gms, float latDiff, float lonDiff) {
+        if (gms != null) {
+            lat = gms.lat + latDiff;
+            lon = gms.lon + lonDiff;
+        }
+        StartCoroutine(SetGoogleMapSprite(lat, lon, zoom, scale));
+    }
+
 }
