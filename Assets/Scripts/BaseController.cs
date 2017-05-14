@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour {
 
-	public static int secondsToTake = 3; //can make unstatic later if we want
+	public int x = 0;
+	public int y = 0;
+	public static int maxTime = 60;
+	public static int minTime = 30;
+	public static int secondsToTake = 3;
 	private static float refreshRate = (float) secondsToTake / 100;
 
 	GameObject colour;
 	GameObject center;
+	GameObject countdown;
 
-	//public int baseNumber;
 	//Assume no occupants or team at start
 	public int[] occupants = {0, 0}; //{red, blue}
 	public Team team = Team.NONE;
 	private int percentTaken = 0;
 	public bool changing = false;
+	private int timeRemaining;
 
 	// Use this for initialization
 	void Start () {
 		colour = transform.Find ("Colour").gameObject;
 		center = transform.Find ("Center").gameObject;
-
 		colour.GetComponent <SpriteRenderer>().color = Color.grey;
 	}
 	
@@ -63,16 +67,17 @@ public class BaseController : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Player") {
-			PlayerController player = other.GetComponent <PlayerController> ();
 			occupants [(int) Team.RED]--;
 		}else if (other.tag == "Baddie") {
 			BaddieController baddie = other.GetComponent <BaddieController> ();
 			occupants [(int) Team.BLUE]--;
-			baddie.lastVisitedBase = this;
+			if (team == Team.BLUE) {
+				baddie.setLastVisitedBase (this);
+			}
 		}
 	}
 
-	void IncreaseHold(){
+	private void IncreaseHold(){
 		percentTaken++;
 
 		//If has been fully taken, stop
@@ -91,7 +96,7 @@ public class BaseController : MonoBehaviour {
 		colour.transform.localScale = new Vector3 (scale, scale, 1);
 	}
 
-	void DecreaseHold(){
+	private void DecreaseHold(){
 		percentTaken--;
 
 		//Attacking team = team not currently controlling this base
@@ -117,5 +122,26 @@ public class BaseController : MonoBehaviour {
 		//Show percent taken
 		float scale = (float) percentTaken / 100;
 		colour.transform.localScale = new Vector3 (scale, scale, 1);
+	}
+
+	public int StartCountDown(){
+		countdown = transform.Find ("Countdown").gameObject;
+
+		timeRemaining = Random.Range (minTime, maxTime + 1);
+
+		countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
+		InvokeRepeating ("CountDown", 1.0f, 1.0f);
+		return timeRemaining;
+	}
+
+	private void CountDown(){
+		timeRemaining--;
+		if (timeRemaining == 0) {
+			BaseFactory.grid [x, y] = null;
+			ScoreSystem.IncrementScore (team);
+			Destroy (gameObject);
+		} else {
+			countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
+		}
 	}
 }

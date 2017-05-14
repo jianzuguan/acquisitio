@@ -5,45 +5,76 @@ using UnityEngine;
 public class BaseFactory : MonoBehaviour {
 
 	//Inspector editable
-	public Transform player;
 	public Transform basePrefab;
-	public static int numberToStart = 2;
-	public static int numberToEnd = 10;
-	public float spawnFrequency = 120.0f; //can change / speed up
-	public static float mapSize = 2500.0f;
+	public static int maxBases = 10;
+	public static int gridSize = 8;
+	public static int maxTime = 10;
+	public static int minTime = 2;
 
-	private Transform[] bases = new Transform[numberToEnd];
-	private int numberOfBases = 0;
+	public static Transform[,] grid = new Transform[gridSize, gridSize];
+	private float mapSize;
+	private float interval;
+	private int numberOfBases = maxBases;
 
-	// Use this for initialization
 	void Start () {
-		if (numberToEnd < numberToStart) {
-			print ("ERROR: MORE STARTING BASES THAN ENDING AMOUNT");
-		} else {
-			for (int i = 0; i < numberToStart; i++) {
-				SpawnBase ();
-			}
+		GameObject map = GameObject.Find ("Map");
+		mapSize = map.transform.lossyScale.x * 10.0f; //x10 because it's a plane, /2 beca
+		interval = mapSize / gridSize;
 
-			float x = bases [0].position.x;
-			float y = bases [0].position.y;
+		for (int i = 0; i < maxBases; i++) {
+			SpawnBase ();
+		}
+	}
 
-			player.transform.position = new Vector3 (x, y, player.transform.position.z);
-
-			InvokeRepeating ("SpawnBase", spawnFrequency, spawnFrequency);
+	void Update () {
+		if (numberOfBases < maxBases) {
+			numberOfBases++;
+			SpawnBase ();
 		}
 	}
 
 	private void SpawnBase(){
-		//Get random point in map
-		float halfMapSize = mapSize / 2.0f;
-		float x = Random.Range (-halfMapSize, halfMapSize);
-		float y = Random.Range (-halfMapSize, halfMapSize);
+		//Get random place in grid
+		int x = 0;
+		int y = 0;
+		bool spotFound = false;
+		while (!spotFound) {
+			x = Random.Range (0, gridSize);
+			y = Random.Range (0, gridSize);
+			if (grid [x, y] == null) {
+				spotFound = true;
+			}
+		}
+
+		//Scale
+		float mapX = x * interval;
+		float mapY = y * interval;
+		//Center
+		mapX += interval / 2.0f;
+		mapY += interval / 2.0f;
+		//Adjust
+		mapX += -mapSize / 2.0f;
+		mapY += -mapSize / 2.0f;
 
 		//Instantiate from prefab
-		GameObject b = Instantiate(basePrefab, new Vector3(x, y, 0.0f), Quaternion.identity).gameObject;
+		GameObject b = Instantiate(basePrefab, new Vector3(mapX, mapY, 0.0f), Quaternion.identity).gameObject;
 		b.transform.parent = transform;
+		grid [x, y] = b.transform;
 
-		bases [numberOfBases] = b.transform;
-		numberOfBases++;
+		BaseController bc = b.GetComponent<BaseController> ();
+		bc.x = x;
+		bc.y = y;
+
+		Invoke ("DecrementBases", (float) bc.StartCountDown ());
+	}
+
+	private void DecrementBases(){
+		numberOfBases--;
+	}
+
+	//returns true if okay
+	private bool checkStartingState(){
+		//TODO: check start state
+		return true;
 	}
 }
