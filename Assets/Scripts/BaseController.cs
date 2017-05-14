@@ -12,10 +12,10 @@ public class BaseController : MonoBehaviour {
 
 	//public int baseNumber;
 	//Assume no occupants or team at start
-	private int[] occupants = {0, 0}; //{red, blue}
+	public int[] occupants = {0, 0}; //{red, blue}
 	public Team team = Team.NONE;
 	private int percentTaken = 0;
-	private bool changing = false;
+	public bool changing = false;
 
 	// Use this for initialization
 	void Start () {
@@ -54,7 +54,7 @@ public class BaseController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.tag == "Player") {
+		if (other.tag == "Player" || other.tag == "Baddie") {
 			PlayerController player = other.GetComponent <PlayerController> ();
 			occupants [(int) player.team]++;
 		}
@@ -64,7 +64,11 @@ public class BaseController : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Player") {
 			PlayerController player = other.GetComponent <PlayerController> ();
-			occupants [(int) player.team]--;
+			occupants [(int) Team.RED]--;
+		}else if (other.tag == "Baddie") {
+			BaddieController baddie = other.GetComponent <BaddieController> ();
+			occupants [(int) Team.BLUE]--;
+			baddie.lastVisitedBase = this;
 		}
 	}
 

@@ -14,16 +14,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		float right = 0;
-		float up = 0;
-
-		if (team == Team.RED) {
-			right = moveSpeed * Input.GetAxis ("p1_h");
-			up = moveSpeed * Input.GetAxis ("p1_v");
-		} else if (team == Team.BLUE) {
-			right = moveSpeed * Input.GetAxis ("p2_h");
-			up = moveSpeed * Input.GetAxis ("p2_v");
-		}
+		float right = moveSpeed * Input.GetAxis ("Horizontal");
+		float up = moveSpeed * Input.GetAxis ("Vertical");
 
 		right *= Time.deltaTime;
 		up *= Time.deltaTime;
