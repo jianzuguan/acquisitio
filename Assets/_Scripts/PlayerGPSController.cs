@@ -16,9 +16,7 @@ public class PlayerGPSController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         gs = GameObject.Find("GameState").GetComponent<GameState>();
-#if UNITY_ANDROID
-        InvokeRepeating("StartGPS", 0f, 1f);
-#endif
+
     }
 
     // Update is called once per frame
@@ -28,7 +26,7 @@ public class PlayerGPSController : MonoBehaviour {
 #endif
     }
 
-    public void StartGPS() {
+    public void GetGPS() {
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser) {
             errorText.text = "Please turn on your GPS tracking";
@@ -37,11 +35,10 @@ public class PlayerGPSController : MonoBehaviour {
         }
 
         // Start service before querying location
-        Input.location.Start();
-        CancelInvoke("StartGPS");
-    }
+        if (Input.location.status == LocationServiceStatus.Stopped) {
+            Input.location.Start();
+        }
 
-    public void GetGPS() {
         // Wait until service initializes
         if (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0) {
             maxWait--;
