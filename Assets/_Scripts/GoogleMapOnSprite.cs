@@ -24,9 +24,9 @@ public class GoogleMapOnSprite : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetButtonDown("Submit")) {
-            UpdateMap(lat, lon, zoom);
-        }
+        //if (Input.GetButtonDown("Submit")) {
+        //    UpdateMap(lat, lon, zoom);
+        //}
     }
 
     IEnumerator SetGoogleMapSprite(float lat, float lon, int zoom, int scale) {
@@ -35,10 +35,11 @@ public class GoogleMapOnSprite : MonoBehaviour {
             "zoom=" + zoom + "&" +
             "size=" + size + "x" + size + "&" +
             //"size=" + Screen.width + "x" + Screen.height + "&" +
-            "scale=" + scale;
+            "scale=" + scale +
             //"&maptype=terrain";
+            "&style=feature:all|element:labels|visibility:off";
 
-        Debug.Log(url);
+        //Debug.Log(url);
 
         WWW www = new WWW(url);
         // Wait for download to complete
