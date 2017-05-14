@@ -10,8 +10,6 @@ public class BackgroundGenerator : MonoBehaviour {
     private GameObject backgroundTile;
     [SerializeField] private int length = 2;
     [SerializeField] private int step = 10;
-    [SerializeField] private float latDiff = 0.00339f;
-    [SerializeField] private float lonDiff = 0.00536f;
     private Vector3 tilePosition;
     private GameObject tile;
     private GoogleMapOnSprite gmsPrevious;
@@ -19,6 +17,11 @@ public class BackgroundGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        GameState gs = GameObject.Find("GameState").GetComponent<GameState>();
+
+        float latDiff = gs.latDiff;
+        float lonDiff = gs.lonDiff;
+
         tilePosition = transform.position;
         GenerateTile(0, 0, 0, 0);
 
