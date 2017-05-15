@@ -5,9 +5,13 @@ using UnityEngine;
 public class BackgroundGenerator : MonoBehaviour {
     public int iteration = 2;
 
+    public float boundaryXNegative;
+    public float boundaryXPositive;
+    public float boundaryYNegative;
+    public float boundaryYPositive;
+
     [Header("Private")]
-    [SerializeField]
-    private GameObject backgroundTile;
+    [SerializeField] private GameObject backgroundTile;
     [SerializeField] private int length = 2;
     [SerializeField] private int step = 10;
     private Vector3 tilePosition;
@@ -21,7 +25,7 @@ public class BackgroundGenerator : MonoBehaviour {
 
         float latDiff = gs.latDiff;
         float lonDiff = gs.lonDiff;
-
+        // Generate map background
         tilePosition = transform.position;
         GenerateTile(0, 0, 0, 0);
 
@@ -47,6 +51,12 @@ public class BackgroundGenerator : MonoBehaviour {
             length += 2;
 
         }
+
+        // Set boundarys for the play area
+        boundaryXNegative = -step * iteration;
+        boundaryXPositive = step * iteration;
+        boundaryYNegative = -step * iteration;
+        boundaryYPositive = step * iteration;
     }
 
     // Update is called once per frame
@@ -54,6 +64,7 @@ public class BackgroundGenerator : MonoBehaviour {
 
     }
 
+    // Map background is made up with tiles
     private void GenerateTile(float xDiff, float yDiff, float latDiff, float lonDiff) {
         tilePosition = new Vector3(tilePosition.x + xDiff, tilePosition.y + yDiff, tilePosition.z);
         tile = Instantiate(backgroundTile, tilePosition, Quaternion.identity, transform);
