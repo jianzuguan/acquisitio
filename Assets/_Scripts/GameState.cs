@@ -29,7 +29,7 @@ public class GameState : MonoBehaviour {
         countdownUI.SetActive(true);
 
         if (countdownText == null) {
-            countdownText = GameObject.Find("/Canvas/Countdown/CountdownText").GetComponent<Text>();
+            countdownText = GameObject.Find("/CanvasGameState/Countdown/CountdownText").GetComponent<Text>();
         }
 
         if (endScreen == null) {

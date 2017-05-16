@@ -20,12 +20,13 @@ public class PlayerGPSController : MonoBehaviour {
         bgg = GameObject.Find("BackgroundContainer").GetComponent<BackgroundGenerator>();
 
         if (errorPanel == null) {
-            errorPanel = GameObject.Find("/CanvasGPSInfo");
+            errorPanel = GameObject.Find("/CanvasGPSInfo/ErrorPanel");
+        }
+        if (errorText == null) {
+            errorText = GameObject.Find("/CanvasGPSInfo/ErrorPanel/Text").GetComponent<Text>();
         }
         errorPanel.SetActive(false);
-        if (errorText == null) {
-            errorText = GameObject.Find("/CanvasGPSInfo/Text").GetComponent<Text>();
-        }
+
         if (initPanel == null) {
             initPanel = GameObject.Find("/CanvasGPSInfo/InitPanel");
         }
