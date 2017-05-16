@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour {
 	public int x = 0;
 	public int y = 0;
 	public static int maxTime = 60;
-	public static int minTime = 30;
+	public static int minTime = 10;
 	public static int secondsToTake = 3;
 	private static float refreshRate = (float) secondsToTake / 100;
 

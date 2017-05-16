@@ -6,10 +6,8 @@ public class BaseFactory : MonoBehaviour {
 
 	//Inspector editable
 	public Transform basePrefab;
-	public static int maxBases = 10;
-	public static int gridSize = 8;
-	public static int maxTime = 10;
-	public static int minTime = 2;
+	public static int maxBases = 9;
+	public static int gridSize = 7;
 
 	public static Transform[,] grid = new Transform[gridSize, gridSize];
 	private float mapSize;
@@ -18,7 +16,7 @@ public class BaseFactory : MonoBehaviour {
 
 	void Start () {
 		GameObject map = GameObject.Find ("Map");
-		mapSize = map.transform.lossyScale.x * 10.0f; //x10 because it's a plane, /2 beca
+		mapSize = map.transform.lossyScale.x * 10.0f;
 		interval = mapSize / gridSize;
 
 		for (int i = 0; i < maxBases; i++) {
@@ -70,11 +68,5 @@ public class BaseFactory : MonoBehaviour {
 
 	private void DecrementBases(){
 		numberOfBases--;
-	}
-
-	//returns true if okay
-	private bool checkStartingState(){
-		//TODO: check start state
-		return true;
 	}
 }

@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour {
 	public float moveSpeed = 100.0f;
 
 	private GameObject baseFactory;
+	private GameObject compass;
 	private BaseController lastVisitedBase;
 
 	// Use this for initialization
 	void Start () {
 		baseFactory = GameObject.Find ("Base Factory");
+		compass = GameObject.Find ("Compass");
 	}
 
 	// Update is called once per frame
@@ -25,20 +27,33 @@ public class PlayerController : MonoBehaviour {
 
 		transform.Translate (right, up, 0);
 
-		//TODO: show arrow to nearest takeable base
+		Vector3 destination = getDestination ();
+		if (destination.z != float.MaxValue) {
+			Vector3 direction = destination - transform.position;
+			direction.z = 0.0f;
+			direction.Normalize ();
+
+			float angle = Vector3.Angle (Vector3.down, direction);
+			if (direction.x < 0.0f) {
+				angle = -angle;
+			}
+
+			compass.transform.localEulerAngles = new Vector3(0.0f, 0.0f, angle);
+		}
 	}
 
 	protected Vector3 getDestination(){
 		Vector3 destination = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+		Team enemyTeam = (team == Team.RED) ? Team.BLUE : Team.RED;
 
 		foreach (Transform b in baseFactory.transform) {
 			BaseController baseC = b.GetComponent <BaseController> ();
 			//If base is nearer than current destination...
 			if (Vector3.Distance (transform.position, b.position) < Vector3.Distance (transform.position, destination)) {
 				///...and it's not the last visited base or occupied by a red player...
-				if (baseC != lastVisitedBase && baseC.occupants [(int)Team.RED] == 0) {
+				if (baseC != lastVisitedBase && baseC.occupants [(int)enemyTeam] == 0) {
 					//...and that it's not 100% blue already
-					if (baseC.team != Team.BLUE || baseC.changing) {
+					if (baseC.team != team || baseC.changing) {
 						destination = b.position;
 					}
 				}
