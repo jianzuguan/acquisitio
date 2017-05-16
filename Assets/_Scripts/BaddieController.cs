@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaddieController : PlayerController {
+public class BaddieController : DirectionController {
 
 	public float maxStrayAngle = 90.0f;
 	private float strayAngle = 0.0f;

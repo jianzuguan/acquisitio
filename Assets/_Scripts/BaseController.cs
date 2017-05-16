@@ -59,21 +59,17 @@ public class BaseController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player" || other.tag == "Baddie") {
-			PlayerController player = other.GetComponent <PlayerController> ();
+			DirectionController player = other.GetComponent <DirectionController> ();
 			occupants [(int) player.team]++;
 		}
 	}
 	
 
 	void OnTriggerExit2D(Collider2D other){
-		if (other.tag == "Player") {
-			occupants [(int) Team.RED]--;
-		}else if (other.tag == "Baddie") {
-			BaddieController baddie = other.GetComponent <BaddieController> ();
-			occupants [(int) Team.BLUE]--;
-			if (team == Team.BLUE) {
-				baddie.setLastVisitedBase (this);
-			}
+		if (other.tag == "Player" || other.tag == "Baddie") {
+			DirectionController player = other.GetComponent <DirectionController> ();
+			occupants [(int) player.team]--;
+			player.setLastVisitedBase (this);
 		}
 	}
 

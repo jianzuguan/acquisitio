@@ -6,17 +6,15 @@ public class BaseFactory : MonoBehaviour {
 
 	//Inspector editable
 	public Transform basePrefab;
-	public static int maxBases = 9;
-	public static int gridSize = 7;
+	public static int maxBases = 8;
+	public static int gridSize = 8;
 
 	public static Transform[,] grid = new Transform[gridSize, gridSize];
-	private float mapSize;
+	public float mapSize;
 	private float interval;
 	private int numberOfBases = maxBases;
 
 	void Start () {
-		GameObject map = GameObject.Find ("Map");
-		mapSize = map.transform.lossyScale.x * 10.0f;
 		interval = mapSize / gridSize;
 
 		for (int i = 0; i < maxBases; i++) {
@@ -55,7 +53,7 @@ public class BaseFactory : MonoBehaviour {
 		mapY += -mapSize / 2.0f;
 
 		//Instantiate from prefab
-		GameObject b = Instantiate(basePrefab, new Vector3(mapX, mapY, 0.0f), Quaternion.identity).gameObject;
+		GameObject b = Instantiate(basePrefab, new Vector3(mapX, mapY, -5.0f), Quaternion.identity).gameObject;
 		b.transform.parent = transform;
 		grid [x, y] = b.transform;
 

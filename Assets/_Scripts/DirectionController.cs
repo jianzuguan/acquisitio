@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class DirectionController : MonoBehaviour {
 
 	public Team team;
-	public float moveSpeed = 100.0f;
+	public float moveSpeed = 1.0f;
 
 	private GameObject baseFactory;
 	private GameObject compass;
@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		float right = moveSpeed * Input.GetAxis ("Horizontal");
-		float up = moveSpeed * Input.GetAxis ("Vertical");
-
-		right *= Time.deltaTime;
-		up *= Time.deltaTime;
-
-		transform.Translate (right, up, 0);
+		float v = Input.GetAxis("Vertical");
+		float h = Input.GetAxis("Horizontal");
+		v *= moveSpeed;
+		h *= moveSpeed;
+		v *= Time.deltaTime;
+		h *= Time.deltaTime;
+		transform.Translate(h, v, 0.0f);
 
 		Vector3 destination = getDestination ();
 		if (destination.z != float.MaxValue) {
