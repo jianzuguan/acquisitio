@@ -24,16 +24,18 @@ public class GameState : MonoBehaviour {
     // Use this for initialization
     void Start() {
         if (countdownUI == null) {
-            countdownUI = GameObject.Find("/Canvas/Countdown");
-            countdownUI.SetActive(true);
+            countdownUI = GameObject.Find("/CanvasGameState/Countdown");
         }
+        countdownUI.SetActive(true);
+
         if (countdownText == null) {
             countdownText = GameObject.Find("/Canvas/Countdown/CountdownText").GetComponent<Text>();
         }
+
         if (endScreen == null) {
-            endScreen = GameObject.Find("/Canvas/EndScreen");
-            endScreen.SetActive(false);
+            endScreen = GameObject.Find("/CanvasGameState/EndScreen");
         }
+        endScreen.SetActive(false);
     }
 
     // Update is called once per frame
