@@ -8,6 +8,8 @@ public class GameState : MonoBehaviour {
     public GameObject countdownUI;
     public Text countdownText;
 
+    public GameObject scoresUI;
+
     public GameObject endScreen;
 
     [Header("Should not change")]
@@ -32,6 +34,10 @@ public class GameState : MonoBehaviour {
             countdownText = GameObject.Find("/CanvasGameState/Countdown/CountdownText").GetComponent<Text>();
         }
 
+        if (scoresUI == null) {
+            scoresUI = GameObject.Find("/CanvasGameState/Scores");
+        }
+
         if (endScreen == null) {
             endScreen = GameObject.Find("/CanvasGameState/EndScreen");
         }
@@ -52,6 +58,7 @@ public class GameState : MonoBehaviour {
     }
 
     void DisplayEndScreen() {
+        scoresUI.SetActive(false);
         endScreen.SetActive(true);
     }
 
@@ -62,7 +69,7 @@ public class GameState : MonoBehaviour {
         // Setup UI
         endScreen.SetActive(false);
         countdownUI.SetActive(true);
-        //scoreUI.SetActive(true);
+        scoresUI.SetActive(true);
 
     }
 }

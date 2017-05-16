@@ -117,11 +117,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4929480438866828, guid: 6f11dc976d08d7c42a0f900c805cded1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 60.62794
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929480438866828, guid: 6f11dc976d08d7c42a0f900c805cded1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 19.91077
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929480438866828, guid: 6f11dc976d08d7c42a0f900c805cded1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -414,79 +414,9 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1622580305}
-    - target: {fileID: 114911012805332524, guid: 32b6874755974c24ba4151949461a56c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: InitGameState
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32b6874755974c24ba4151949461a56c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1273013526
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1273013527}
-  - component: {fileID: 1273013528}
-  m_Layer: 0
-  m_Name: CameraMinimap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1273013527
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1273013526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2088978060}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1273013528
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1273013526}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 8
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 1792
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 36009de608f318946989c9804f74a442, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!1001 &1479898971
 Prefab:
   m_ObjectHideFlags: 0
@@ -577,11 +507,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2088978060 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4385522243337702, guid: 91c78b48bdacaf64c8f635e666714c61,
-    type: 2}
-  m_PrefabInternal: {fileID: 2091306410}
 --- !u!1001 &2091306410
 Prefab:
   m_ObjectHideFlags: 0
