@@ -62,7 +62,7 @@ public class PlayerGPSController : MonoBehaviour {
             transform.position.y < bgg.boundaryYNegative ||
             transform.position.y > bgg.boundaryYPositive) {
 
-            errorText.text = "You are outside the game regeion \n please go back";
+            errorText.text = "You are outside the game region \n please go back";
             errorPanel.SetActive(true);
             return;
         }
@@ -81,7 +81,7 @@ public class PlayerGPSController : MonoBehaviour {
             float latDiff = Input.location.lastData.latitude - gs.latOrigin;
             float lonDiff = Input.location.lastData.longitude - gs.lonOrigin;
 
-            transform.position = new Vector3(lonDiff / gs.lonPerUnit, latDiff / gs.latPerUnit, 0);
+            transform.position = new Vector3(lonDiff / gs.lonPerUnit, latDiff / gs.latPerUnit, transform.position.z);
         }
 #endif
     }
