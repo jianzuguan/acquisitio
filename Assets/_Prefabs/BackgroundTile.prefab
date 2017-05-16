@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212557912960990058}
   - component: {fileID: 114407651051391044}
   - component: {fileID: 114073624503534986}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BackgroundTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

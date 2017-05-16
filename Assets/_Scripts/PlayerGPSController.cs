@@ -18,6 +18,18 @@ public class PlayerGPSController : MonoBehaviour {
     void Start() {
         gs = GameObject.Find("GameState").GetComponent<GameState>();
         bgg = GameObject.Find("BackgroundContainer").GetComponent<BackgroundGenerator>();
+
+        if (errorPanel == null) {
+            errorPanel = GameObject.Find("/CanvasGPSInfo");
+        }
+        errorPanel.SetActive(false);
+        if (errorText == null) {
+            errorText = GameObject.Find("/CanvasGPSInfo/Text").GetComponent<Text>();
+        }
+        if (initPanel == null) {
+            initPanel = GameObject.Find("/CanvasGPSInfo/InitPanel");
+        }
+        initPanel.SetActive(false);
     }
 
     // Update is called once per frame

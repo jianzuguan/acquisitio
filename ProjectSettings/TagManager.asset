@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - Overview
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Base
+  - Background
+  - Minimap
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Minimap
+    uniqueID: 1796774377
+    locked: 0
+  - name: UI
+    uniqueID: 2200102699
     locked: 0
