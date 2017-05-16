@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour {
     public GameObject scoresUI;
 
     public GameObject endScreen;
+    public Text endState;
 
     [Header("Should not change")]
     public float latOrigin = 50.93574f;
@@ -25,19 +26,21 @@ public class GameState : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        if (countdownText == null) {
+            countdownText = GameObject.Find("/CanvasGameState/Countdown/CountdownText").GetComponent<Text>();
+        }
         if (countdownUI == null) {
             countdownUI = GameObject.Find("/CanvasGameState/Countdown");
         }
         countdownUI.SetActive(true);
 
-        if (countdownText == null) {
-            countdownText = GameObject.Find("/CanvasGameState/Countdown/CountdownText").GetComponent<Text>();
-        }
-
         if (scoresUI == null) {
             scoresUI = GameObject.Find("/CanvasGameState/Scores");
         }
 
+        if (endState == null) {
+            endState = GameObject.Find("/CanvasGameState/EndScreen/Text").GetComponent<Text>();
+        }
         if (endScreen == null) {
             endScreen = GameObject.Find("/CanvasGameState/EndScreen");
         }
@@ -59,12 +62,27 @@ public class GameState : MonoBehaviour {
 
     void DisplayEndScreen() {
         scoresUI.SetActive(false);
+
+        // Show wining or lose
+        Team playersTeam = GameObject.Find("Player").GetComponent<DirectionController>().team;
+        Team winningTeam = GetComponent<ScoreSystem>().GetWiningTeam();
+        if (winningTeam == Team.NONE) {
+            // Draw
+            endState.text = "Draw";
+        } else if (winningTeam == playersTeam) {
+            // Win
+            endState.text = "Win";
+        } else {
+            // Lost
+            endState.text = "Lose";
+        }
+
         endScreen.SetActive(true);
     }
 
     public void InitGameState() {
         countdown = 300f;
-        // Initialise score
+        GetComponent<ScoreSystem>().ResetScore();
 
         // Setup UI
         endScreen.SetActive(false);
