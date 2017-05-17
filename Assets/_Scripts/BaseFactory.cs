@@ -67,4 +67,16 @@ public class BaseFactory : MonoBehaviour {
 	private void DecrementBases(){
 		numberOfBases--;
 	}
+
+	public void ClearBases(){
+		foreach (Transform b in transform) {
+			Destroy (b.gameObject);
+		}
+	}
+
+	public void Restart(){
+		for (int i = 0; i < maxBases; i++) {
+			SpawnBase ();
+		}
+	}
 }
