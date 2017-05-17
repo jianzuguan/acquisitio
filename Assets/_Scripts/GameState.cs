@@ -61,7 +61,7 @@ public class GameState : MonoBehaviour {
     }
 
     void DisplayEndScreen() {
-        scoresUI.SetActive(false);
+        //scoresUI.SetActive(false);
 
         // Show wining or lose
         Team playersTeam = GameObject.Find("Player").GetComponent<DirectionController>().team;
