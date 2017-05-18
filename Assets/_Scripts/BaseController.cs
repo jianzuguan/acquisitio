@@ -23,6 +23,7 @@ public class BaseController : MonoBehaviour {
 	public Team team = Team.NONE;
 	private int percentTaken = 0;
 	public bool changing = false;
+	private bool taken = false;
 	private int timeRemaining;
 
 	// Use this for initialization
@@ -86,6 +87,7 @@ public class BaseController : MonoBehaviour {
 		if (percentTaken == 100) { 
 			center.GetComponent <SpriteRenderer>().color = team == Team.RED ? Color.red : Color.blue;
 			CancelInvoke ("IncreaseHold");
+			taken = true;
 			changing = false;
 		//If no players in team left in area, stop
 		} else if (occupants [(int)team] == 0) { 
@@ -108,8 +110,9 @@ public class BaseController : MonoBehaviour {
 		if (percentTaken == 0) {
 			CancelInvoke ("DecreaseHold");
 			team = Team.NONE;
-			center.GetComponent <SpriteRenderer> ().color = Color.grey;
+			taken = false;
 			changing = false;
+			center.GetComponent <SpriteRenderer> ().color = Color.grey;
 		//If someone from the team returns to the base, they can increase their hold 
 		} else if (occupants [(int)team] > 0) {
 			CancelInvoke ("DecreaseHold");
@@ -142,7 +145,9 @@ public class BaseController : MonoBehaviour {
 		timeRemaining--;
 		if (timeRemaining == 0) {
 			baseFactory.grid [x, y] = null;
-			ss.IncrementScore (team);
+			if (taken == true) {
+				ss.IncrementScore (team);
+			}
 			Destroy (gameObject);
 		} else {
 			countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
