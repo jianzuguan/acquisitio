@@ -25,6 +25,10 @@ public class ScoreSystem : MonoBehaviour {
         }
     }
 
+    public int GetScore(Team t) {
+        return score[(int)t];
+    }
+
     public Team GetWiningTeam() {
         if (score[(int)Team.RED] > score[(int)Team.BLUE]) {
             return Team.RED;
