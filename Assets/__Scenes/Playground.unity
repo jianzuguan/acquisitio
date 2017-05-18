@@ -538,11 +538,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114117208347115114, guid: 74d6d2eba77e84a1397f64bc86ec6379,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74d6d2eba77e84a1397f64bc86ec6379, type: 2}
   m_IsPrefabParent: 0
@@ -584,21 +579,6 @@ Prefab:
     - target: {fileID: 4385522243337702, guid: 91c78b48bdacaf64c8f635e666714c61, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 20348875612533516, guid: 91c78b48bdacaf64c8f635e666714c61,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294965247
-      objectReference: {fileID: 0}
-    - target: {fileID: 20561565334286106, guid: 91c78b48bdacaf64c8f635e666714c61,
-        type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3840
-      objectReference: {fileID: 0}
-    - target: {fileID: 114986808610698702, guid: 91c78b48bdacaf64c8f635e666714c61,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91c78b48bdacaf64c8f635e666714c61, type: 2}

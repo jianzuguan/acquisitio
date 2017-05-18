@@ -52,4 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePrefab: {fileID: 4712558188743496, guid: 76c59adcc78324c05985952aec4c9f91, type: 2}
+  maxBases: 8
   mapSize: 20

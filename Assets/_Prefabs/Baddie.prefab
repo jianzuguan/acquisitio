@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  moveSpeed: 1
+  moveSpeed: 0.2
   maxStrayAngle: 90
 --- !u!212 &212138469417275734
 SpriteRenderer:

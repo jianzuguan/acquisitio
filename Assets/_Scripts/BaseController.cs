@@ -6,8 +6,8 @@ public class BaseController : MonoBehaviour {
 
 	public int x = 0;
 	public int y = 0;
-	public static int maxTime = 100;
-	public static int minTime = 60;
+	public int maxTime = 100;
+	public int minTime = 60;
 	public static int secondsToTake = 5;
 	private static float refreshRate = (float) secondsToTake / 100;
 

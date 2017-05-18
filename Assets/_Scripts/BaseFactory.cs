@@ -6,15 +6,19 @@ public class BaseFactory : MonoBehaviour {
 
 	//Inspector editable
 	public Transform basePrefab;
-	public static int maxBases = 8;
+	public int maxBases = 8;
 	public static int gridSize = 8;
 
 	public static Transform[,] grid = new Transform[gridSize, gridSize];
 	public float mapSize;
 	private float interval;
-	private int numberOfBases = maxBases;
+	private int numberOfBases;
 
 	void Start () {
+		if (!GameState.isRunning) {
+			gridSize = 2;
+		}
+		numberOfBases = maxBases;
 		interval = mapSize / gridSize;
 
 		for (int i = 0; i < maxBases; i++) {

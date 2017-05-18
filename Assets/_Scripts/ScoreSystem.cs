@@ -12,7 +12,7 @@ public class ScoreSystem : MonoBehaviour {
     // Use this for initialization
     void Start() {
         red = GameObject.Find("Red Score").GetComponent<Text>();
-        if (GetComponent<GameState>().isRunning) {
+		if (GameState.isRunning) {
             blue = GameObject.Find("Blue Score").GetComponent<Text>();
         }
     }
@@ -21,7 +21,9 @@ public class ScoreSystem : MonoBehaviour {
         if (t != Team.NONE) {
             score[(int)t]++;
             red.text = score[(int)Team.RED].ToString();
-            blue.text = score[(int)Team.BLUE].ToString();
+			if (GameState.isRunning) {
+				blue.text = score[(int)Team.BLUE].ToString();
+			}
         }
     }
 

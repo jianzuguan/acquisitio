@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
-    public bool isRunning;
+    public static bool isRunning;
 
     public float countdown = 300f;
     public GameObject countdownUI;
