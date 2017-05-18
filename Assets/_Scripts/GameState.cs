@@ -61,6 +61,8 @@ public class GameState : MonoBehaviour {
     }
 
     void DisplayEndScreen() {
+        GameObject.Find("Base Factory").GetComponent<BaseFactory>().ClearBases();
+
         //scoresUI.SetActive(false);
 
         // Show wining or lose
@@ -80,9 +82,11 @@ public class GameState : MonoBehaviour {
         endScreen.SetActive(true);
     }
 
+    // Restart game
     public void InitGameState() {
-        countdown = 300f;
+        GameObject.Find("Base Factory").GetComponent<BaseFactory>().Restart();
         GetComponent<ScoreSystem>().ResetScore();
+        countdown = 300f;
 
         // Setup UI
         endScreen.SetActive(false);
