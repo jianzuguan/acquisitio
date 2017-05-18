@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour {
 
-    private static int[] score = { 0, 0 }; //{red, blue}
-    private static Text red;
-    private static Text blue;
+    private int[] score = { 0, 0 }; //{red, blue}
+    private Text red;
+    private Text blue;
 	private GameState gs;
 
     // Use this for initialization
