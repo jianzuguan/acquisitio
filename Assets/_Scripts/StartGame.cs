@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour {
     public ScoreSystem ss;
     public DirectionController dc;
     public int scoreNeeded = 2;
+	private bool hasStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,10 @@ public class StartGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (ss.GetScore(dc.team) >= scoreNeeded) {
-            SceneManager.LoadScene("__Scenes/Game");
+		print (ss.GetScore (dc.team));
+		if (ss.GetScore(dc.team) >= scoreNeeded && hasStarted == false) {
+			hasStarted = true;
+			SceneManager.LoadScene("__Scenes/Game");
         }
 	}
 }
