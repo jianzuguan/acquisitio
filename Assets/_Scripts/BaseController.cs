@@ -6,14 +6,15 @@ public class BaseController : MonoBehaviour {
 
 	public int x = 0;
 	public int y = 0;
-	public static int maxTime = 60;
-	public static int minTime = 10;
-	public static int secondsToTake = 3;
+	public static int maxTime = 100;
+	public static int minTime = 60;
+	public static int secondsToTake = 5;
 	private static float refreshRate = (float) secondsToTake / 100;
 
 	GameObject colour;
 	GameObject center;
 	GameObject countdown;
+	GameObject bigCountdown;
 
 	//Assume no occupants or team at start
 	public int[] occupants = {0, 0}; //{red, blue}
@@ -122,10 +123,12 @@ public class BaseController : MonoBehaviour {
 
 	public int StartCountDown(){
 		countdown = transform.Find ("Countdown").gameObject;
+		bigCountdown = transform.Find ("BigCountdown").gameObject; 
 
 		timeRemaining = Random.Range (minTime, maxTime + 1);
 
 		countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
+		bigCountdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
 		InvokeRepeating ("CountDown", 1.0f, 1.0f);
 		return timeRemaining;
 	}
@@ -138,6 +141,7 @@ public class BaseController : MonoBehaviour {
 			Destroy (gameObject);
 		} else {
 			countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
+			bigCountdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
 		}
 	}
 }
