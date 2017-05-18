@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
+    public bool isRunning;
+
     public float countdown = 300f;
     public GameObject countdownUI;
     public Text countdownText;
@@ -26,37 +28,43 @@ public class GameState : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        if (countdownText == null) {
+        if (isRunning && countdownText == null) {
             countdownText = GameObject.Find("/CanvasGameState/Countdown/CountdownText").GetComponent<Text>();
         }
-        if (countdownUI == null) {
+        if (isRunning && countdownUI == null) {
             countdownUI = GameObject.Find("/CanvasGameState/Countdown");
         }
-        countdownUI.SetActive(true);
+        if (countdownUI != null) {
+            countdownUI.SetActive(true);
+        }
 
         if (scoresUI == null) {
             scoresUI = GameObject.Find("/CanvasGameState/Scores");
         }
 
-        if (endState == null) {
+        if (isRunning && endState == null) {
             endState = GameObject.Find("/CanvasGameState/EndScreen/Text").GetComponent<Text>();
         }
-        if (endScreen == null) {
+        if (isRunning && endScreen == null) {
             endScreen = GameObject.Find("/CanvasGameState/EndScreen");
         }
-        endScreen.SetActive(false);
+        if (endScreen != null) {
+            endScreen.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update() {
         // Countdown
-        if (countdown >= 0) {
-            countdown -= Time.deltaTime;
-            countdownText.text = countdown.ToString("F2");
-        } else {
-            countdownText.text = "0";
-            countdownUI.SetActive(false);
-            DisplayEndScreen();
+        if (isRunning) {
+            if (countdown >= 0) {
+                countdown -= Time.deltaTime;
+                countdownText.text = countdown.ToString("F2");
+            } else {
+                countdownText.text = "0";
+                countdownUI.SetActive(false);
+                DisplayEndScreen();
+            }
         }
     }
 

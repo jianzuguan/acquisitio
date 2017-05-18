@@ -12,7 +12,9 @@ public class ScoreSystem : MonoBehaviour {
     // Use this for initialization
     void Start() {
         red = GameObject.Find("Red Score").GetComponent<Text>();
-        blue = GameObject.Find("Blue Score").GetComponent<Text>();
+        if (GetComponent<GameState>().isRunning) {
+            blue = GameObject.Find("Blue Score").GetComponent<Text>();
+        }
     }
 
     public static void IncrementScore(Team t) {
