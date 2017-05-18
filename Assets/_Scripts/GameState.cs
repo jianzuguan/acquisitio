@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameState : MonoBehaviour {
     public bool isRunning;
 
-    public float countdown = 300f;
+    public float countdown = 180f;
     public GameObject countdownUI;
     public Text countdownText;
 
