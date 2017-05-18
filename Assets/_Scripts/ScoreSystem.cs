@@ -8,20 +8,22 @@ public class ScoreSystem : MonoBehaviour {
     private static int[] score = { 0, 0 }; //{red, blue}
     private static Text red;
     private static Text blue;
+	private GameState gs;
 
     // Use this for initialization
     void Start() {
-        red = GameObject.Find("Red Score").GetComponent<Text>();
-		if (GameState.isRunning) {
+		gs = GameObject.Find ("GameState").GetComponent <GameState> ();
+		red = GameObject.Find("Red Score").GetComponent<Text>();
+		if (gs.isRunning) {
             blue = GameObject.Find("Blue Score").GetComponent<Text>();
         }
     }
 
-    public static void IncrementScore(Team t) {
+    public void IncrementScore(Team t) {
         if (t != Team.NONE) {
             score[(int)t]++;
             red.text = score[(int)Team.RED].ToString();
-			if (GameState.isRunning) {
+			if (gs.isRunning) {
 				blue.text = score[(int)Team.BLUE].ToString();
 			}
         }

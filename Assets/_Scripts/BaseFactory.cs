@@ -7,15 +7,19 @@ public class BaseFactory : MonoBehaviour {
 	//Inspector editable
 	public Transform basePrefab;
 	public int maxBases = 8;
-	public static int gridSize = 8;
+	public int gridSize = 8;
 
-	public static Transform[,] grid = new Transform[gridSize, gridSize];
+	public Transform[,] grid;
 	public float mapSize;
 	private float interval;
 	private int numberOfBases;
 
+	private GameState gs;
+
 	void Start () {
-		if (!GameState.isRunning) {
+		grid = new Transform[gridSize, gridSize];
+		gs = GameObject.Find ("GameState").GetComponent <GameState> ();
+		if (!gs.isRunning) {
 			gridSize = 2;
 		}
 		numberOfBases = maxBases;

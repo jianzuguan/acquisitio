@@ -22,9 +22,7 @@ public class StartGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print (ss.GetScore (dc.team));
 		if (ss.GetScore(dc.team) >= scoreNeeded && hasStarted == false) {
-			hasStarted = true;
 			SceneManager.LoadScene("__Scenes/Game");
         }
 	}

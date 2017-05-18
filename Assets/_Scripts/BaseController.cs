@@ -8,9 +8,11 @@ public class BaseController : MonoBehaviour {
 	public int y = 0;
 	public int maxTime = 100;
 	public int minTime = 60;
-	public static int secondsToTake = 5;
-	private static float refreshRate = (float) secondsToTake / 100;
+	public int secondsToTake = 5;
+	private float refreshRate;
 
+	BaseFactory baseFactory;
+	ScoreSystem ss;
 	GameObject colour;
 	GameObject center;
 	GameObject countdown;
@@ -25,6 +27,9 @@ public class BaseController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		refreshRate = (float)secondsToTake / 100;
+		baseFactory = GameObject.Find ("Base Factory").GetComponent <BaseFactory>();
+		ss = GameObject.Find ("GameState").GetComponent <ScoreSystem> ();
 		colour = transform.Find ("Colour").gameObject;
 		center = transform.Find ("Center").gameObject;
 		colour.GetComponent <SpriteRenderer>().color = Color.grey;
@@ -136,8 +141,8 @@ public class BaseController : MonoBehaviour {
 	private void CountDown(){
 		timeRemaining--;
 		if (timeRemaining == 0) {
-			BaseFactory.grid [x, y] = null;
-			ScoreSystem.IncrementScore (team);
+			baseFactory.grid [x, y] = null;
+			ss.IncrementScore (team);
 			Destroy (gameObject);
 		} else {
 			countdown.GetComponent <TextMesh>().text = timeRemaining.ToString ();
