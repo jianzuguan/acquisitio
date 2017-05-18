@@ -158,7 +158,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gain 2 scores to start the game
+  m_Text: Bases take 5 seconds to capture. Gain 2 points to start the game.
 --- !u!222 &45858046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gain score when your base disapears
+  m_Text: Your score increases when a base you've captured times out.
 --- !u!222 &255972230
 CanvasRenderer:
   m_ObjectHideFlags: 0

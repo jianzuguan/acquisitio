@@ -316,8 +316,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
-  maxTime: 10
-  minTime: 10
+  maxTime: 15
+  minTime: 8
+  secondsToTake: 5
   occupants: 0000000000000000
   team: 2
   changing: 0
